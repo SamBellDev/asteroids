@@ -46,10 +46,14 @@ def main():
         for item in updateable:
             item.update(dt)
 
-        for item in asteroids:
-            if item.collides_with(player):
+        for asteroid in asteroids:
+            if asteroid.collides_with(player):
                 print("Game Over!")
                 sys.exit()
+            for shot in shots:
+                if shot.collides_with(asteroid):
+                    shot.kill()
+                    asteroid.kill()
 
         pygame.display.flip()
 
